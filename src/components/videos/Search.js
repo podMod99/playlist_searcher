@@ -39,7 +39,7 @@ const Search = () => {
       {youtubeContext.videos.length > 0 && (
         <button
           className='btn btn-light btn-block'
-          onClick={youtubeContext.clearUsers}
+          onClick={youtubeContext.clearVideos}
         >
           Clear
         </button>

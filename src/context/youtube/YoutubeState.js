@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import YoutubeContext from './youtubeContext';
 import YoutubeReducer from './youtubeReducer';
-import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS, GET_VIDEO } from '../types';
+import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
 
 // for production, refactor so that key not in source code (like in github project)
 const key = 'AIzaSyALjs5qudeqiHKmAQx5vNN8Br7cFKtEJcE';
@@ -12,13 +12,14 @@ const playlistId = 'PLgQwti-5aPoErdG3X_f1fEcCVnSpXf6zU';
 const YoutubeState = (props) => {
   const initialState = {
     videos: [],
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(YoutubeReducer, initialState);
 
   // Search videos
   const searchVideos = async (text) => {
-    // add set loading
+    setLoading();
 
     // find number of pages
     let res = await axios.get(
@@ -67,7 +68,7 @@ const YoutubeState = (props) => {
 
     listOfVideos.forEach((item, i) => {
       const title = item.snippet.title.split(' ');
-      for (var i = 0; i < title.length; i++) {
+      for (i = 0; i < title.length; i++) {
         if (
           text.toUpperCase().split(' ').includes(title[i].toUpperCase()) ===
           false
@@ -84,20 +85,25 @@ const YoutubeState = (props) => {
       return listOfMatches.indexOf(element) === index;
     });
 
-    console.log(listOfMatches);
-    console.log(removeDuplicates);
-
     dispatch({
       type: SEARCH_VIDEOS,
       payload: removeDuplicates,
     });
   };
 
+  // Set loading
+  const setLoading = () => dispatch({ type: SET_LOADING });
+
+  // Clear videos
+  const clearVideos = () => dispatch({ type: CLEAR_VIDEOS });
   return (
     <YoutubeContext.Provider
       value={{
         videos: state.videos,
+        loading: state.loading,
         searchVideos,
+        setLoading,
+        clearVideos,
       }}
     >
       {props.children}
