@@ -4,8 +4,7 @@ import YoutubeContext from './youtubeContext';
 import YoutubeReducer from './youtubeReducer';
 import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
 
-// for production, refactor so that key not in source code (like in github project)
-const key = 'AIzaSyALjs5qudeqiHKmAQx5vNN8Br7cFKtEJcE';
+const key = process.env.REACT_APP_YOUTUBE_API;
 // playlist ID hardcoded for now
 const playlistId = 'PLgQwti-5aPoErdG3X_f1fEcCVnSpXf6zU';
 
