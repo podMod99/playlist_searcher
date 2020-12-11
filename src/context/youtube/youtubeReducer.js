@@ -1,4 +1,4 @@
-import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
+import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS, GET_VIDEO } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -7,6 +7,13 @@ export default (state, action) => {
         ...state,
         videos: action.payload,
         loading: false,
+      };
+    }
+
+    case GET_VIDEO: {
+      return {
+        ...state,
+        video: action.payload,
       };
     }
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const UserItem = ({ video: { snippet } }) => {
+  const id = snippet.resourceId.videoId;
   return (
     <div className='card text-center'>
       <img
@@ -14,10 +15,7 @@ const UserItem = ({ video: { snippet } }) => {
       <h3>{snippet.title}</h3>
 
       <div>
-        <Link
-          to={`/user/${snippet.title}`}
-          className='btn btn-dark btn-sm my-1'
-        >
+        <Link to={`/video/${id}`} className='btn btn-dark btn-sm my-1'>
           Watch
         </Link>
       </div>

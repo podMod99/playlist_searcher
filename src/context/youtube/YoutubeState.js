@@ -2,15 +2,22 @@ import React, { useReducer } from 'react';
 import axios from 'axios';
 import YoutubeContext from './youtubeContext';
 import YoutubeReducer from './youtubeReducer';
-import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
+import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS, GET_VIDEO } from '../types';
 
-const key = process.env.REACT_APP_YOUTUBE_API;
+let key;
+if (process.env.NODE_ENV !== 'production') {
+  key = process.env.REACT_APP_YOUTUBE_API;
+} else {
+  key = process.env.YOUTUBE_API;
+}
+
 // playlist ID hardcoded for now
-const playlistId = 'PLgQwti-5aPoErdG3X_f1fEcCVnSpXf6zU';
+const playlistId = 'PLPNnWfjxlHcLIROtltzGZh_JmzPn16oNE';
 
 const YoutubeState = (props) => {
   const initialState = {
     videos: [],
+    video: {},
     loading: false,
   };
 
@@ -90,6 +97,20 @@ const YoutubeState = (props) => {
     });
   };
 
+  // Get video
+  const getVideo = async (id, videos) => {
+    // setLoading();
+
+    const videoData = videos.filter((video) => {
+      return video.snippet.resourceId.videoId === id;
+    });
+
+    dispatch({
+      type: GET_VIDEO,
+      payload: videoData,
+    });
+  };
+
   // Set loading
   const setLoading = () => dispatch({ type: SET_LOADING });
 
@@ -99,10 +120,12 @@ const YoutubeState = (props) => {
     <YoutubeContext.Provider
       value={{
         videos: state.videos,
+        video: state.video,
         loading: state.loading,
         searchVideos,
         setLoading,
         clearVideos,
+        getVideo,
       }}
     >
       {props.children}
