@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/layout/Navbar';
-import Video from './components/videos/Video';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 
@@ -18,7 +17,6 @@ function App() {
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/about' component={About} />
-              <Route exact path='/video/:id' component={Video} />
             </Switch>
           </div>
         </div>

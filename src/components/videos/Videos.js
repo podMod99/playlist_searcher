@@ -23,7 +23,7 @@ const Videos = () => {
 
 const videoStyle = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(3, 1fr)',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
   gridGap: '1rem',
 };
 
