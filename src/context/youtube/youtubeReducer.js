@@ -1,6 +1,6 @@
 import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
 
-export default (state, action) => {
+const youtubeReducer = (state, action) => {
   switch (action.type) {
     case SEARCH_VIDEOS: {
       return {
@@ -27,3 +27,5 @@ export default (state, action) => {
       return state;
   }
 };
+
+export default youtubeReducer;
