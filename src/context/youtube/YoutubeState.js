@@ -5,7 +5,7 @@ import YoutubeReducer from './youtubeReducer';
 import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
 
 let key;
-console.log(process);
+console.log(process.env);
 if (process.env.NODE_ENV !== 'production') {
   key = process.env.REACT_APP_YOUTUBE_API;
 } else {
