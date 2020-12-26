@@ -10,6 +10,7 @@ if (process.env.NODE_ENV !== 'production') {
   key = process.env.REACT_APP_YOUTUBE_API;
 } else {
   key = process.env.YOUTUBE_API;
+  console.log(key);
   console.log(process.env);
 }
 
