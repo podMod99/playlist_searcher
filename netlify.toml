@@ -1,2 +1,6 @@
 [build]
+  command = "npm run build"
   publish="build"
+
+[build.environment]
+  YOUTUBE_API = AIzaSyALjs5qudeqiHKmAQx5vNN8Br7cFKtEJcE
