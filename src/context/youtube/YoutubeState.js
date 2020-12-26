@@ -5,11 +5,12 @@ import YoutubeReducer from './youtubeReducer';
 import { SEARCH_VIDEOS, SET_LOADING, CLEAR_VIDEOS } from '../types';
 
 let key;
-console.log(process.env);
 if (process.env.NODE_ENV !== 'production') {
+  console.log(process.env);
   key = process.env.REACT_APP_YOUTUBE_API;
 } else {
   key = process.env.YOUTUBE_API;
+  console.log(process.env);
 }
 
 // playlist ID hardcoded for now
