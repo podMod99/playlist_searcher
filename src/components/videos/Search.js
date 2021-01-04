@@ -1,21 +1,15 @@
 import React, { useState, useContext } from 'react';
 import YoutubeContext from '../../context/youtube/youtubeContext';
-// import AlertContext from '../../context/alert/alertContext';
 
 const Search = () => {
   const youtubeContext = useContext(YoutubeContext);
-  //   const alertContext = useContext(AlertContext);
 
   const [text, setText] = useState('');
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // if (text === '') {
-    // alertContext.setAlert('Please enter something', 'light');
-    // } else {
     youtubeContext.searchVideos(text);
     setText('');
-    // }
   };
 
   const onChange = (e) => setText(e.target.value);
